@@ -1,0 +1,46 @@
+<html>
+
+  <head>
+    <title>Yielding Webapp</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://r.bstatic.com/libs/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://q.bstatic.com/libs/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+
+    <meta property="og:site_name" content="standup order">
+    <meta property="og:title" content="Homepage | standup order">
+    <meta property="og:description" content="">
+
+  </head>
+
+  <body>
+    <div  class="container">
+      <div class="row">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <a class="navbar-brand" href="/yielding_internal/">yielding_webapp</a>
+              <ul class="nav navbar-nav">
+              </ul>
+            </div>
+          </div><!-- /.container-fluid -->
+        </nav>
+      </div>
+      <div id="team-memebers" class="row"></div>
+    </div>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);        
+        const team =  urlParams.get('team') || [];
+const shuffled_team = team.sort((a, b) => 0.5 - Math.random());
+
+const order = `Standup order for today ${(new Date()).toISOString().split('T')[0]} <br> - ${shuffled_team.join('<br> - ')}`;
+document.getElementById("team-memebers").innerHTML = order;
+
+document.querySelector('meta[property="og:description"]').setAttribute("content", order);
+     
+    </script>
+  </body>
+
+</html>
