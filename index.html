@@ -32,7 +32,7 @@
     <script>
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);        
-        const team =  urlParams.get('team') || [];
+        const team =  JSON.parse(decodeURIComponent(urlParams.get('team'))) || [];
 const shuffled_team = team.sort((a, b) => 0.5 - Math.random());
 
 const order = `Standup order for today ${(new Date()).toISOString().split('T')[0]} <br> - ${shuffled_team.join('<br> - ')}`;
